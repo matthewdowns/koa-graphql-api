@@ -4,10 +4,10 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start": "concurrently \"tsc -w\" \"npm run faker\" \"nodemon -r dotenv/config .\"",
+    "prestart": "npm run faker",
+    "start": "concurrently \"tsc -w\" \"nodemon -r dotenv/config .\" \"json-server --watch faker/users.json --port 5000\"",
     "build": "tsc",
-    "prefaker": "node faker/generateUsers.js",
-    "faker": "json-server --watch faker/users.json --port 5000"
+    "faker": "node faker/generateUsers.js"
   },
   "keywords": [],
   "author": "",
