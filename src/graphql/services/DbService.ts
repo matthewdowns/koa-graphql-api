@@ -1,5 +1,5 @@
 import { IService } from './IService';
-import { ServiceExecutionResult } from './ServiceExecutionResult';
+import { ExecutionResult } from './ExecutionResult';
 import { Services } from './Services';
 
 export class DbService extends IService {
@@ -26,7 +26,7 @@ export class DbService extends IService {
         this.timeout = timeout; 
     }
 
-    async execute<T>(query: string): Promise<ServiceExecutionResult<T>> {
+    async execute<T>(query: string): Promise<ExecutionResult<T>> {
         throw 'Not Implemented';
     }
 }

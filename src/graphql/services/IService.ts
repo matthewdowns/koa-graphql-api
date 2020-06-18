@@ -1,5 +1,5 @@
 import { Services } from "./Services"
-import { ServiceExecutionResult } from './ServiceExecutionResult';
+import { ExecutionResult } from './ExecutionResult';
 
 export abstract class IService {
     protected type: Services;
@@ -8,5 +8,5 @@ export abstract class IService {
         this.type = type;
     }
 
-    abstract async execute<T = undefined>(...params: any): Promise<ServiceExecutionResult<T>>;
+    abstract async execute<T = undefined>(...params: any): Promise<ExecutionResult<T>>;
 }

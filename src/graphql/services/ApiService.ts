@@ -1,5 +1,5 @@
 import { IService } from './IService';
-import { ServiceExecutionResult } from './ServiceExecutionResult';
+import { ExecutionResult } from './ExecutionResult';
 import { Services } from './Services';
 
 export class ApiService extends IService {
@@ -19,7 +19,7 @@ export class ApiService extends IService {
         this.timeout = timeout; 
     }
 
-    async execute<T>(route: string, init?: RequestInit): Promise<ServiceExecutionResult<T>> {
+    async execute<T>(route: string, init?: RequestInit): Promise<ExecutionResult<T>> {
         try {
             const response = await fetch(`${this.host}/${route}`, init);
             const responseBody = await response.json() as T;
