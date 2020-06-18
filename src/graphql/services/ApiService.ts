@@ -1,3 +1,4 @@
+import axios, { AxiosRequestConfig } from 'axios';
 import { IService } from './IService';
 import { ExecutionResult } from './ExecutionResult';
 import { Services } from './Services';
@@ -5,7 +6,7 @@ import { Services } from './Services';
 export class ApiService extends IService {
     protected type: Services;
 
-    private host: string;
+    public host: string;
     private timeout: number;
 
     /**
@@ -19,10 +20,12 @@ export class ApiService extends IService {
         this.timeout = timeout; 
     }
 
-    async execute<T>(route: string, init?: RequestInit): Promise<ExecutionResult<T>> {
+    async execute<T>(route: string, config?: AxiosRequestConfig): Promise<ExecutionResult<T>> {
         try {
-            const response = await fetch(`${this.host}/${route}`, init);
-            const responseBody = await response.json() as T;
+            const url = `${this.host}${route}`;
+            const response = await axios(url);
+            console.log(response);   
+            const responseBody = await response.data as T;
             switch(response.status) {
                 case 200:
                     return { success: true, data: responseBody };
